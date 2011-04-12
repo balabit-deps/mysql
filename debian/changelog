@@ -1,0 +1,5 @@
+mysql (5.1.51-1.syslog-ng40.1) syslogngdeps30; urgency=low
+
+  * Initial packaging of 5.1.56.
+
+ -- Tamas Pal <folti@balabit.com>  Fri, 01 Apr 2011 15:54:14 +0200

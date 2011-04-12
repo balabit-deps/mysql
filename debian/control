@@ -1,0 +1,17 @@
+Source: mysql
+Section: libs
+Priority: optional
+Maintainer: Tamas Pal <folti@balabit.com>
+Standards-Version: 3.7.2
+
+Package: libmysqlclient
+Architecture: any
+Priority: required
+Description: MySQL client library - runtime
+ tgz2builder dummy package
+
+Package: libmysqlclient-dev
+Section: libdevel
+Architecture: any
+Description: MySQL client library - development
+ tgz2builder dummy package

@@ -1,0 +1,58 @@
+#!/usr/local/bin/make -f
+STAMPDIR=tgz2build/stamps
+
+CONFIGURE_OPTS := --with-comment --without-server --without-docs --without-man --with-zlib-dir=$(ZBS_PREFIX) --prefix $(ZBS_PREFIX)
+CONFIGURE_CMD = ./configure
+
+all: binary
+
+binary: clean setup configure build install
+
+ifeq (,$(CC))
+CC:=gcc
+endif
+
+setup:  $(STAMPDIR)/stamp-setup
+$(STAMPDIR)/stamp-setup:
+	mkdir -p tgz2build/stamps
+	touch $@
+
+configure: $(STAMPDIR)/stamp-configure
+$(STAMPDIR)/stamp-configure: setup
+	$(CONFIGURE_CMD) $(CONFIGURE_OPTS)
+	touch $@
+
+build:  $(STAMPDIR)/stamp-build
+$(STAMPDIR)/stamp-build: configure
+	if echo $(ZBS_DIST) | grep '^aix' >/dev/null 2>&1;then \
+		cp tgz2build/mysql.h.pp-aix include/mysql.h.pp; \
+	fi
+	$(MAKE)
+	touch $@
+
+install: $(STAMPDIR)/stamp-install
+$(STAMPDIR)/stamp-install: build
+	rm -rf $(ZBS_STAGE_DIR) || true
+	$(MAKE) install prefix=$(ZBS_STAGE_DIR)/$(ZBS_PREFIX)
+	set -xe; \
+	mv $(ZBS_STAGE_DIR)/$(ZBS_PREFIX)/lib/mysql/libmysql* $(ZBS_STAGE_DIR)/$(ZBS_PREFIX)/lib; \
+	for la in $(ZBS_STAGE_DIR)/$(ZBS_PREFIX)/lib/*.la; do \
+		perl -pi -e 's#/usr/lib/mysql#/usr/lib#' $$la; \
+	done; \
+	if echo $(ZBS_DIST) | grep '^aix' >/dev/null 2>&1;then \
+		cd $(ZBS_STAGE_DIR)/$(ZBS_PREFIX)/lib; \
+		for a in *.a; do \
+			/usr/bin/ar x $$a; \
+			soname=`basename $$a .a`.so; \
+			realso=`/usr/bin/ar t $$a | head -1`; \
+			ln -s $$realso $$soname; \
+		done; \
+	fi
+	touch $@
+
+clean:
+	rm -rf tgz2build/stamps || true
+	rm -rf tgz2build/staging || true
+	-$(MAKE) clean
+
+.PHONY: build clean binary-indep binary-arch binary install
