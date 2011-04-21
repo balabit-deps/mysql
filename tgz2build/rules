@@ -7,7 +7,9 @@ CONFIGURE_CMD = ./configure
 all: binary
 
 binary: clean setup configure build install
-
+ifneq (,$(findstring solaris,$(ZBS_ARCH)))
+  LDFLAGS += -Wl,-R/opt/syslog-ng/lib
+endif
 ifeq (,$(CC))
 CC:=gcc
 endif
@@ -19,7 +21,7 @@ $(STAMPDIR)/stamp-setup:
 
 configure: $(STAMPDIR)/stamp-configure
 $(STAMPDIR)/stamp-configure: setup
-	$(CONFIGURE_CMD) $(CONFIGURE_OPTS)
+	LDFLAGS="$(LDFLAGS)" $(CONFIGURE_CMD) $(CONFIGURE_OPTS)
 	touch $@
 
 build:  $(STAMPDIR)/stamp-build
