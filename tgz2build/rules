@@ -1,7 +1,7 @@
 #!/usr/local/bin/make -f
 STAMPDIR=tgz2build/stamps
 
-CONFIGURE_OPTS := --with-comment --without-server --without-docs --without-man --with-zlib-dir=$(ZBS_PREFIX) --prefix $(ZBS_PREFIX)
+CONFIGURE_OPTS := --with-comment --without-server --without-docs --without-man --with-zlib-dir=$(ZBS_BUILD_PREFIX) --prefix $(ZBS_PREFIX)
 CONFIGURE_CMD = ./configure
 
 all: binary
