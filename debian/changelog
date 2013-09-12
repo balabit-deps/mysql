@@ -1,3 +1,9 @@
+mysql (5.1.51-1.syslog-ng50.1) syslogngdeps50; urgency=low
+
+  * release for syslog-ng-5.0
+
+ -- Laszlo Budai <lbudai@balabit.com>  Thu, 12 Sep 2013 15:17:10 +0200
+
 mysql (5.1.51-1.syslog-ng40.1) syslogngdeps30; urgency=low
 
   * Initial packaging of 5.1.56.
