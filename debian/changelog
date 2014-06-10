@@ -1,3 +1,9 @@
+mysql (5.1.51-1.syslog-ng52.1) syslogng52; urgency=low
+
+  * release for syslog-ng-5.2
+
+ -- jviktor <jviktor@devel-57>  Tue, 10 Jun 2014 08:55:36 +0200
+
 mysql (5.1.51-1.syslog-ng51.1) syslogngdeps51; urgency=low
 
   * release for syslog-ng-5.1
