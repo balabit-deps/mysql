@@ -1,3 +1,9 @@
+mysql (5.1.51-1.syslogng53.3) syslogng53; urgency=low
+
+  * FreeBSD 10.1 support
+
+ -- lbudai <laszlo.budai@balabit.com>  Wed, 25 Feb 2015 16:19:28 +0100
+
 mysql (5.1.51-1.syslogng53.2) syslogng53; urgency=low
 
   * release for syslog-ng-5.3.0alpha2
