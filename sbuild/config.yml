@@ -1,6 +1,6 @@
 name: mysql
 builder:
-  name: BalabitBuilder
+  name: AutotoolsBuilder
   configure_options: "--with-comment --without-server --without-docs --without-man"
   flags: "no-make-dist"
 platforms:
