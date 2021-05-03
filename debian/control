@@ -10,6 +10,12 @@ Priority: required
 Description: MySQL client library - runtime
  tgz2builder dummy package
 
+Package: libmysqlclient-dbg
+Architecture: any
+Priority: required
+Description: MySQL client library - runtime debug
+ tgz2builder dummy package
+
 Package: libmysqlclient-dev
 Section: libdevel
 Architecture: any

@@ -1,6 +1,7 @@
 #!/usr/local/bin/make -f
 STAMPDIR=tgz2build/stamps
 
+CFLAGS += -g
 CONFIGURE_OPTS := --with-comment --without-server --without-docs --without-man --with-zlib-dir=$(ZBS_BUILD_PREFIX) --prefix $(ZBS_PREFIX)
 CONFIGURE_CMD = ./configure
 
@@ -21,7 +22,7 @@ $(STAMPDIR)/stamp-setup:
 
 configure: $(STAMPDIR)/stamp-configure
 $(STAMPDIR)/stamp-configure: setup
-	LDFLAGS="$(LDFLAGS)" $(CONFIGURE_CMD) $(CONFIGURE_OPTS)
+	LDFLAGS="$(LDFLAGS)" $(CONFIGURE_CMD) CFLAGS="$(CFLAGS)" $(CONFIGURE_OPTS)
 	touch $@
 
 build:  $(STAMPDIR)/stamp-build
