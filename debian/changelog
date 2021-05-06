@@ -1,3 +1,9 @@
+mysql (5.1.51-2.syslogng70.1) syslogng70; urgency=low
+
+  * added debug package
+
+  -- Laszlo Varady <laszlo.varady@balabit.com>  Mon, 03 May 2021 13:04:49 +0200
+
 mysql (5.1.51-2.syslogng53.3) syslogng53; urgency=low
 
   * upgrade to openssl 1.1.1d
