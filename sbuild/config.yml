@@ -1,0 +1,9 @@
+name: mysql
+builder:
+  name: AutotoolsBuilder
+  configure_options: >
+    --with-comment
+    --without-server
+    --without-docs
+    --without-man
+    --with-zlib-dir=@@installdir@@

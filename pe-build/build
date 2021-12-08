@@ -1,0 +1,33 @@
+source="mysql"
+version=5.1.51-pe-1
+dependencies=(
+  'zlib' 'zlib-dev' 'libncurses'
+)
+
+bootstrap() {
+  autoreconf -i
+}
+
+build() {
+  cd "${build_dir}"
+  ${src_dir}/configure \
+    CFLAGS="${CFLAGS} -I${prefix}/include/ncursesw" \
+    CXXFLAGS="${CXXFLAGS} -I${prefix}/include/ncursesw" \
+    --prefix="${prefix}" \
+    --with-comment \
+    --without-server \
+    --without-docs \
+    --without-man \
+    --with-zlib-dir="${prefix}"
+  make
+}
+
+install() {
+  make -C "${build_dir}" DESTDIR="${dest_dir}" install
+
+  # FIXME!
+  # We cannot get mysql to not put the libs under lib/mysql/ with configure flags.
+  # We should be okay with how it is, but our modules, which use mysql, are expecting the libs to be under lib.
+  # We should fix the user side, and remove this workaround.
+  mv ${dest_dir}/${prefix}/lib/mysql/* ${dest_dir}/${prefix}/lib/; rm -rf ${dest_dir}/${prefix}/lib/mysql/
+}
