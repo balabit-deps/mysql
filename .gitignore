@@ -1,3 +1,0 @@
-sbuild/*
-!sbuild/config.yml
-sbuild.py

@@ -1,8 +1,0 @@
-name: mysql
-builder:
-  name: AutotoolsBuilder
-  configure_options: "--with-comment --without-server --without-docs --without-man"
-  flags: "no-make-dist"
-platforms:
-  - aix-6.1/powerpc
-  - linux-glibc2.11/amd64

@@ -29,10 +29,7 @@ INCLUDES =			-I$(top_builddir)/include \
 LIBS =				@CLIENT_LIBS@
 
 LDADD=				@CLIENT_EXTRA_LDFLAGS@ $(CLIENT_THREAD_LIBS) \
-				$(top_builddir)/libmysql/libmysqlclient.la \
-				$(top_builddir)/mysys/libmysys.a \
-				$(top_builddir)/strings/libmystrings.a
-
+				$(top_builddir)/libmysql/libmysqlclient.la
 
 noinst_HEADERS =		sql_string.h completion_hash.h my_readline.h \
 				client_priv.h

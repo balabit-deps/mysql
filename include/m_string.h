@@ -62,10 +62,6 @@
 # define bzero(A,B)             memset((A),0,(B))
 #endif
 
-#ifdef _AIX
-# define bzero(A,B)             memset((A),0,(B))
-#endif
-
 #if defined(__cplusplus)
 extern "C" {
 #endif
